@@ -9,18 +9,18 @@ const FeaturesTabItem = ({ featureTab }: { featureTab: FeatureTab }) => {
     <>
       <div className="flex items-center gap-8 lg:gap-19">
         <div className="md:w-1/2">
-          <h2 className="mb-7 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle2">
+          <h3 className="mb-7 text-md font-bold text-black dark:text-white xl:text-sectiontitle2">
             {title}
-          </h2>
+          </h3>
           <p className="mb-5">{desc1}</p>
           <p className="w-11/12">{desc2}</p>
-          <h3 className="mb-3 text-2xl font-bold text-black dark:text-white xl:text-sectiontitle2">
+          <h3 className="mb-3 text-sm font-bold text-black dark:text-white xl:text-sectiontitle2">
             {sub_title}
           </h3>
-           <ul  className="mb-5 list-disc" >
+           <ul  className="mb-10 list-disc" >
              {
                list.map((mylist, key) => (
-                <li  key={key} > {mylist}</li>
+                <li  key={key}  className="ml-5" > {mylist}</li>
 
                ))
              }

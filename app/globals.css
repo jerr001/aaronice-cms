@@ -83,6 +83,9 @@
   }
 }
 
+p,li {
+  @apply text-sm;
+}
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -129,7 +132,7 @@
     @apply h-2.5 w-2.5 bg-stroke opacity-100;
   }
   .testimonial-01 .swiper-pagination-bullet-active {
-    @apply w-5 rounded-full bg-primary;
+    @apply w-5 rounded-full bg-orange-400;
   }
 
   .testimonial-01 .swiper-pagination {
@@ -160,11 +163,11 @@
 }
 
 .blog-details p {
-  @apply mb-8 text-base leading-relaxed text-titlebgdark dark:text-waterloo;
+  @apply mb-8 text-sm leading-relaxed text-titlebgdark dark:text-waterloo;
 }
 
 .blog-details p strong {
-  @apply text-primary dark:text-waterloo;
+  @apply text-orange-400 dark:text-waterloo;
 }
 .blog-details h3 strong,
 .blog-details h3 {
@@ -173,7 +176,7 @@
 
 .blog-details h4 strong,
 .blog-details h4 {
-  @apply text-xl font-semibold! leading-tight text-black dark:text-white sm:text-2xl sm:leading-tight lg:text-xl lg:leading-tight xl:text-2xl xl:leading-tight;
+  @apply text-xl font-semibold! leading-tight text-orange-400 dark:text-white sm:text-2xl sm:leading-tight lg:text-xl lg:leading-tight xl:text-2xl xl:leading-tight;
 }
 
 .blog-details h5 strong,
@@ -217,7 +220,7 @@ pre {
   @apply relative mb-2 rounded-lg bg-strokedark px-4 py-2;
 }
 .prism-copy-button {
-  @apply absolute right-2 top-2 h-[26px] rounded-sm bg-white px-4 text-primary;
+  @apply absolute right-2 top-2 h-[26px] rounded-sm bg-white px-4 text-orange-400;
 }
 
 .active-tab {

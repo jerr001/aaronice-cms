@@ -21,7 +21,7 @@ const FeaturesTab = () => {
                               headerInfo={{
                                 title: "OUR PROJECTS",
                                 subtitle: "Innovative IT Solutions That Power Progress",
-                                description: `We design and deliver intelligent IT solutions that meet global standards and solve complex digital challenges. Each project is focused on driving transformation and measurable impact for businesses and communities.`,
+                                description: `We create smart IT solutions that meet global standards and drive real impact for businesses and communities.`,
                               }}
                             />
 
