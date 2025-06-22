@@ -3,12 +3,74 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
+
 const Contact = () => {
-  /**
-   * Source: https://www.joshwcomeau.com/react/the-perils-of-rehydration/
-   * Reason: To fix rehydration error
-   */
+ 
   const [hasMounted, setHasMounted] = React.useState(false);
+
+  const [form, setForm] = React.useState({
+    fullName: "",
+    email: "",
+    subject: "",
+    phone: "",
+    message: "",
+    agree: true,
+  });
+  //const [error, setError] = React.useState("");
+  //const [success, setSuccess] = React.useState("");
+   const [loading, setLoading] = React.useState(false);
+  const [responseMsg, setResponseMsg] = React.useState("");
+
+
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+    const { name, value, type } = target;
+    const checked = (target as HTMLInputElement).checked;
+    setForm(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setResponseMsg("");
+
+    if (!form.agree) {
+      setResponseMsg("You must agree to the terms.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      //console.log(data)
+
+      if (res.ok) {
+        setResponseMsg("Message sent successfully.");
+        setForm({
+          fullName: "",
+          email: "",
+          subject: "",
+          phone: "",
+          message: "",
+          agree: false,
+        });
+      } else {
+        setResponseMsg(data.error || "Failed to send message.");
+      }
+    } catch (error) {
+      setResponseMsg("Failed to send message.");
+    }
+    setLoading(false);
+  };
   React.useEffect(() => {
     setHasMounted(true);
   }, []);
@@ -56,23 +118,32 @@ const Contact = () => {
               viewport={{ once: true }}
               className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black md:w-3/5 lg:w-3/4 xl:p-15"
             >
-              <h2 className="mb-15 text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
+              <h2 className="mb-15 text-3xl font-semibold text-orange-400 dark:text-white xl:text-sectiontitle2">
                 Send a message
               </h2>
 
-              <form
-                action="https://formbold.com/s/unique_form_id"
-                method="POST"
-              >
+              {responseMsg && (
+                <div className="mb-4 text-orange-500 dark:text-white">
+                  <p>{responseMsg}</p>
+                </div>
+              )}
+
+              <form  onSubmit={handleSubmit} >
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                      name="fullName"
                     placeholder="Full name"
+                     value={form.fullName}
+                     onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
-                    type="email"
+                   name="email"
+                   type="email"
+                   value={form.email}
+                   onChange={handleChange}
                     placeholder="Email address"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
@@ -81,11 +152,17 @@ const Contact = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                      name="subject"
+                     value={form.subject}
+                      onChange={handleChange}
                     placeholder="Subject"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
                     type="text"
                     placeholder="Phone number"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
@@ -94,6 +171,10 @@ const Contact = () => {
 
                 <div className="mb-11.5 flex">
                   <textarea
+
+                     name="message"
+                     value={form.message}
+                      onChange={handleChange}
                     placeholder="Message"
                     rows={4}
                     className="w-full border-b border-stroke bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
@@ -106,8 +187,11 @@ const Contact = () => {
                       id="default-checkbox"
                       type="checkbox"
                       className="peer sr-only"
+                         name="agree"
+                           checked={form.agree}
+                         onChange={handleChange}
                     />
-                    <span className="border-gray-300 bg-gray-100 text-blue-600 dark:border-gray-600 dark:bg-gray-700 group mt-2 flex h-5 min-w-[20px] items-center justify-center rounded-sm peer-checked:bg-primary">
+                    <span className="border-gray-300 bg-gray-100 text-orange-400 dark:border-gray-600 dark:bg-gray-700 group mt-2 flex h-5 min-w-[20px] items-center justify-center rounded-sm peer-checked:bg-orange-400">
                       <svg
                         className="opacity-0 in-[.group]:peer-checked:opacity-100"
                         width="10"
@@ -133,11 +217,11 @@ const Contact = () => {
                     </label>
                   </div>
 
-                  <button
+                  <button   disabled={loading}
                     aria-label="send message"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-black px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-orange-400 px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-range-400 dark:bg-orange-400"
                   >
-                    Send Message
+                  {loading ? "Sending..." : "Send Message"}
                     <svg
                       className="fill-white"
                       width="14"
@@ -174,30 +258,30 @@ const Contact = () => {
               viewport={{ once: true }}
               className="animate_top w-full md:w-2/5 md:p-7.5 lg:w-[26%] xl:pt-15"
             >
-              <h2 className="mb-12.5 text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
+              <h2 className="mb-12.5 text-3xl font-semibold text-orange-400 dark:text-white xl:text-sectiontitle2">
                 Find us
               </h2>
 
               <div className="5 mb-7">
-                <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
+                <h3 className="mb-4 text-metatitle3 font-medium text-orange-400 dark:text-white">
                   Our Loaction
                 </h3>
-                <p>290 Maryam Springs 260, Courbevoie, Paris, France</p>
+                <p> Building 105, Babalola Street, Behind Union Bank, Iseyin, Oyo State. </p>
               </div>
               <div className="5 mb-7">
-                <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
+                <h3 className="mb-4 text-metatitle3 font-medium text-orange-400 dark:text-white">
                   Email Address
                 </h3>
                 <p>
-                  <a href="#">yourmail@domainname.com</a>
+                  <a href="#">support@aaronice.com </a>
                 </p>
               </div>
               <div>
-                <h4 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
+                <h4 className="mb-4 text-metatitle3 font-medium text-orange-400 dark:text-white">
                   Phone Number
                 </h4>
                 <p>
-                  <a href="#">+009 42334 6343 843</a>
+                  <a href="#">+234 816 906 1707 </a>
                 </p>
               </div>
             </motion.div>

@@ -34,13 +34,14 @@ export default function Home() {
       <FeaturesTab />
       <FunFact />
       <Team />
+  
       {/* <Integration /> */}
       <CTA />
-      <FAQ />
+      {/* <FAQ /> */}
       <Testimonial />
       {/* <Pricing /> */}
       <Contact />
-      <Blog />
+      {/* <Blog /> */}
     </main>
   );
 }

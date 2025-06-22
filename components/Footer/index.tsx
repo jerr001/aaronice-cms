@@ -32,21 +32,21 @@ const Footer = () => {
                   <Image
                     width={110}
                     height={80}
-                    src="/images/logo/logo-light.svg"
+                    src="/images/logo/banner-light.png"
                     alt="Logo"
                     className="dark:hidden"
                   />
                   <Image
                     width={110}
                     height={80}
-                    src="/images/logo/logo-dark.svg"
+                    src="/images/logo/banner-light.png"
                     alt="Logo"
                     className="hidden dark:block"
                   />
                 </a>
 
                 <p className="mb-10 mt-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Aaronice Prime Global Company Ltd was established with a clear vision to provide intelligent technology solutions to real-world challenges and cultivate the next generation of tech professionals.
                 </p>
 
                 <p className="mb-1.5 text-sectiontitle uppercase tracking-[5px]">
@@ -56,7 +56,7 @@ const Footer = () => {
                   href="#"
                   className="text-itemtitle font-medium text-black dark:text-white"
                 >
-                  hello@solid.com
+                   support@aaronice.com 
                 </a>
               </motion.div>
 
@@ -86,34 +86,34 @@ const Footer = () => {
                   <ul>
                     <li>
                       <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        href="/"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
                         Home
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        href="/about"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
-                        Product
+                        About
                       </a>
                     </li>
                     <li>
                       <a
                         href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
-                        Careers
+                        Service
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        href="/contact"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
-                        Pricing
+                        Contact
                       </a>
                     </li>
                   </ul>
@@ -145,7 +145,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
                         Company
                       </a>
@@ -153,7 +153,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
                         Press media
                       </a>
@@ -161,7 +161,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
                         Our Blog
                       </a>
@@ -169,7 +169,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="#"
-                        className="mb-3 inline-block hover:text-primary"
+                        className="mb-3 inline-block hover:text-orange-400"
                       >
                         Contact Us
                       </a>
@@ -207,7 +207,7 @@ const Footer = () => {
                       <input
                         type="text"
                         placeholder="Email address"
-                        className="w-full rounded-full border border-stroke px-6 py-3 shadow-solid-11 focus:border-primary focus:outline-hidden dark:border-strokedark dark:bg-black dark:shadow-none dark:focus:border-primary"
+                        className="w-full rounded-full border border-stroke px-6 py-3 shadow-solid-11 focus:border-orange-400 focus:outline-hidden dark:border-strokedark dark:bg-black dark:shadow-none dark:focus:border-orange-400"
                       />
 
                       <button
@@ -265,17 +265,17 @@ const Footer = () => {
             >
               <ul className="flex items-center gap-8">
                 <li>
-                  <a href="#" className="hover:text-primary">
+                  <a href="#" className="hover:text-orange-400">
                     English
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary">
+                  <a href="#" className="hover:text-orange-400">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary">
+                  <a href="#" className="hover:text-orange-400">
                     Support
                   </a>
                 </li>

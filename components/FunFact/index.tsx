@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+
 const FunFact = () => {
   return (
     <>

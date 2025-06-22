@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import FeaturesTabItem from "./FeaturesTabItem";
 import featuresTabData from "./featuresTabData";
+import SectionHeader from "../Common/SectionHeader";
 
 import { motion } from "framer-motion";
 
@@ -14,8 +15,17 @@ const FeaturesTab = () => {
       {/* <!-- ===== Features Tab Start ===== --> */}
       <section className="relative pb-20 pt-18.5 lg:pb-22.5">
 
-         <div className="text-center text-gray-500 px-2 pt-0 pb-3 text-xl font-medium"> Our Projects </div>
-        <div className="relative mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
+         {/* <div className="text-center text-gray-500 px-2 pt-0 pb-3 text-xl font-medium"> Our Projects </div> */}
+
+          <SectionHeader
+                              headerInfo={{
+                                title: "OUR PROJECTS",
+                                subtitle: "Innovative IT Solutions That Power Progress",
+                                description: `We design and deliver intelligent IT solutions that meet global standards and solve complex digital challenges. Each project is focused on driving transformation and measurable impact for businesses and communities.`,
+                              }}
+                            />
+
+        <div className="relative mx-auto max-w-c-1390 px-4 pt-5 md:px-8 2xl:px-0">
           <div className="absolute -top-16 -z-1 mx-auto h-[350px] w-[90%]">
             <Image
               fill

@@ -3,11 +3,13 @@
 import Image from "next/image";
 import SectionHeader from "../Common/SectionHeader";
 import coursesData from "./coursesData";
+import Link from "next/link";
 
-const Courses = () => {
+const url = process.env.NEXT_PUBLIC_COURSES_URL || "#";
+ const Courses = () => {
   return (
     <>
-      <section className="overflow-hidden pb-20 pt-15 lg:pb-25 xl:pb-30">
+      <section  id="courses" className="overflow-hidden pb-20 pt-15 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           <div className="animate_top mx-auto text-center">
             <SectionHeader
@@ -68,7 +70,8 @@ const Courses = () => {
                   className="group/btn inline-flex items-center gap-2.5 font-medium text-orange-400 transition-all duration-300 dark:text-white dark:hover:text-orange-400"
                 >
                   <span className="duration-300 group-hover/btn:pr-2">
-                    Subscribe Now
+                      <Link href={url} > Apply Now</Link>
+                   
                   </span>
                   <svg
                     width="14"
