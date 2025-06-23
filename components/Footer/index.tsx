@@ -41,7 +41,7 @@ const Footer = () => {
       />
     </a>
     <p className="mt-5 mb-6 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-       Aaronice Prime Global Company Ltd was established with a clear vision to provide intelligent technology solutions to real-world challenges and cultivate the next generation of tech professionals. Backed by a team of seasoned experts with decades of industry experience, we have successfully delivered innovative digital products across key sectors including education, healthcare, agriculture, and retail. Through our dedicated training division, Aaronice Academy, we bridge the gap between knowledge and application by equipping individuals with practical, in-demand tech skills tailored to today’s dynamic digital landscape.
+       Aaronice Prime Global Company Ltd was established with a clear vision to provide intelligent technology solutions to real-world challenges and cultivate the next generation of tech professionals.
     </p>
     <p className="mb-1.5 text-xs font-semibold uppercase tracking-[3px] text-sectiontitle">
       Contact
@@ -132,6 +132,7 @@ const Footer = () => {
           </button>
         </div>
       </form>
+              
     </motion.div>
   </div>
 </div>
@@ -204,8 +205,33 @@ const Footer = () => {
               viewport={{ once: true }}
               className="animate_top"
             >
+             
               <p>
                 &copy; {new Date().getFullYear()}  Aaronice Prime. All rights reserved
+              </p>
+              
+            </motion.div>
+             <motion.div
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: -20,
+                },
+
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 1, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="animate_top"
+            >
+             
+               <p>
+                 Powered By:   Smartcode (+234 8066 579 703 )
               </p>
             </motion.div>
 

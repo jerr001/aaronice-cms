@@ -38,7 +38,7 @@ const url = process.env.NEXT_PUBLIC_COURSES_URL || "#";
                 key={index}
                 className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none"
               >
-                <h3 className="mb-7.5 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
+                <h3 className="mb-7.5 text-md font-medium text-black dark:text-white xl:text-sectiontitle3">
                   Duration:
                   <span className="text-regular text-waterloo dark:text-manatee">
                     &nbsp;{course.duration}
@@ -50,14 +50,14 @@ const url = process.env.NEXT_PUBLIC_COURSES_URL || "#";
                 <p className="">{course.description}</p>
 
                 <div className="mt-9 border-t border-stroke pb-12.5 pt-3 dark:border-strokedark">
-                  <p className="text-bold text-orange-400 dark:text-white py-2">
+                  <p className="text-medium text-orange-400 dark:text-white py-2">
                     Career Opportunities
                   </p>
                   <ul>
                     {course.careers.map((career, i) => (
                       <li
                         key={i}
-                        className="mb-3 text-black last:mb-0 dark:text-manatee"
+                        className="mb-3 last:mb-0 dark:text-manatee"
                       >
                         {career}
                       </li>

@@ -74,7 +74,7 @@ const FeaturesTab = () => {
                 </p>
               </div>
               <div className="md:w-3/5 lg:w-auto">
-                <button className="text-sm font-medium text-black dark:text-white xl:text-regular">
+                <button className="text-xs font-medium text-black dark:text-white">
                   University Portal Development & Deployment
                 </button>
               </div>
@@ -93,7 +93,7 @@ const FeaturesTab = () => {
                 </p>
               </div>
               <div className="md:w-3/5 lg:w-auto">
-                <button className="text-sm font-medium text-black dark:text-white xl:text-regular">
+                <button className="text-xs font-medium text-black dark:text-white">
                    Scalable Cloud-Native Infrastructure for FinSecAfrica
                 </button>
               </div>
@@ -112,7 +112,7 @@ const FeaturesTab = () => {
                 </p>
               </div>
               <div className="md:w-3/5 lg:w-auto">
-                <button className="text-sm font-medium text-black dark:text-white xl:text-regular">
+                <button className="text-xs font-medium text-black dark:text-white">
                   Enterprise Big Data & AI Insights Platform for Global HXGS Leader
 
                 </button>
