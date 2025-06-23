@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     let transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST, // for gmail SMTP
       port: process.env.MAIL_PORT, // default is 587 for TLS
-     // secure: process.env.MAIL_SECURE, // true for 465, false for other ports
+      secure: process.env.MAIL_SECURE, // true for 465, false for other ports
      // requireTLS: true, 
       auth: {
         user: process.env.MAIL_USERNAME, // your gmail or SMTP email
