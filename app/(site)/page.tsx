@@ -29,19 +29,16 @@ export default function Home() {
       <Brands />
       <Feature />
       <Courses />
-       {/* <Pricing />  */}
-      {/* <About /> */}
+  
       <FeaturesTab />
       <FunFact />
       <Team />
-  
-      {/* <Integration /> */}
+
       <CTA />
-      {/* <FAQ /> */}
+
       <Testimonial />
-      {/* <Pricing /> */}
       <Contact />
-      {/* <Blog /> */}
+     
     </main>
   );
 }
