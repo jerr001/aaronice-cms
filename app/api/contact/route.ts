@@ -29,8 +29,8 @@ export async function POST(request: NextRequest) {
 
     // Email message content
     const mailOptions = {
-      from: `"Aaronice Website Contact:" <${process.env.MAIL_FROM_NAME}>`,
-      to: `${process.env.MAIL_FROM_ADDRESS}`, // your receiving email
+      from: `"Aaronice Website" <${process.env.MAIL_FROM_ADDRESS}>`, // sender address
+      to: `${process.env.MAIL_TO_ADDRESS}`, // your receiving email
       subject: `New Contact Form: ${subject}`,
       text: `
 You have received a new message from the website contact form.
