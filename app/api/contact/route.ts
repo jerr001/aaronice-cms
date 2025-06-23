@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         pass: process.env.MAIL_PASSWORD, // your gmail app password or SMTP password
       },
     });
-    console.log(process.env.MAIL_FROM_NAME, process.env.MAIL_HOST, process.env.MAIL_PORT, process.env.MAIL_USERNAME, process.env.MAIL_PASSWORD, process.env.MAIL_SECURE);
+    // console.log(process.env.MAIL_FROM_NAME, process.env.MAIL_HOST, process.env.MAIL_PORT, process.env.MAIL_USERNAME, process.env.MAIL_PASSWORD, process.env.MAIL_SECURE);
 
     // Email message content
     const mailOptions = {
