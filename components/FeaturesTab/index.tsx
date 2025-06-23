@@ -23,7 +23,7 @@ const FeaturesTab = () => {
                                 subtitle: "Innovative IT Solutions That Power Progress",
                                 description: `We create smart IT solutions that meet global standards and drive real impact for businesses and communities.`,
                               }}
-                            />
+                     />
 
         <div className="relative mx-auto max-w-c-1390 px-4 pt-5 md:px-8 2xl:px-0">
           <div className="absolute -top-16 -z-1 mx-auto h-[350px] w-[90%]">

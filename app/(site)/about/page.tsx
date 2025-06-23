@@ -27,12 +27,6 @@ export default function aboutPage() {
                 <h3 className="text-orange-400 dark:text-white" >About Aaronice Prime</h3>
 
                 <p className="text-body-color dark:text-body-color-dark text-base">
-                  {/* Aaronice Prime is a leading technology company dedicated to
-                  delivering innovative software solutions and expert-led tech
-                  training. Our mission is to empower individuals and corporate
-                  bodies to thrive in a digital-first world by providing cutting-edge
-                  AI and automation solutions, comprehensive tech training, and
-                  exceptional customer service. */}
                   Aaronice Prime Global Company Ltd was established with a clear vision—to provide intelligent technology solutions to real-world challenges and cultivate the next generation of tech professionals. Backed by a team of seasoned experts with decades of industry experience, we have successfully delivered innovative digital products across key sectors including education, healthcare, agriculture, and retail.
                    Through our dedicated training division, Aaronice Academy, we bridge the gap between knowledge and application by equipping individuals with practical, in-demand tech skills tailored to today’s dynamic digital landscape.
                 </p>
@@ -46,7 +40,7 @@ export default function aboutPage() {
 
               </div>
 
-               <div id="vision" className="blog-details blog-details-docs shadow-three dark:bg-gray-dark rounded-xs bg-white px-8 py-11 sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]">
+               <div id="mission" className="blog-details blog-details-docs shadow-three dark:bg-gray-dark rounded-xs bg-white px-8 py-11 sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]">
                 <h3  className="text-orange-400 dark:text-white" >Our Mission</h3>
 
                 <p className="text-body-color dark:text-body-color-dark text-base">

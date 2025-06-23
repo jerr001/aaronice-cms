@@ -20,9 +20,9 @@ const Hero = () => {
               {/* </h5>
               <h5 className="mb-5 pr-16 text-lg font-medium text-black dark:text-white xl:text-hero ">
                   */}
-                <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-orange-300 dark:before:bg-orange-300 ">
-                      Driving Innovation, Empowering Talents, AI Automations and Intelligent Software Solutions 
-                </span>
+                {/* <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-orange-300 dark:before:bg-orange-300 "> */}
+                      Driving Innovation, Empowering Talents
+                {/* </span> */}
               </h5>
               <p>
                 We lead the future of technology with intelligent software solutions and expert-led tech training—empowering individuals and corporate bodies to thrive in a digital-first world.
