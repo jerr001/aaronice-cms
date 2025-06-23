@@ -33,7 +33,7 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
           alt={name}
           fill
         /> */}
-        <div  className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden font-extrabold text-xl text-orange-400" >
+        <div  className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden font-extrabold text-xl sm:xl text-orange-400" >
           {image}
         </div>
         <div  className="hidden opacity-70 transition-all duration-300 hover:opacity-100 dark:block font-extrabold text-xl text-white" >

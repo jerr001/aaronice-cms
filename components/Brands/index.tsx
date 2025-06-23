@@ -37,11 +37,11 @@ const BrandSlider = () => (
         className="animate_top mx-auto mt-10 max-w-c-1390 px-4 md:px-8 xl:mt-15 xl:px-0"
       >
         <div className="swiper brand-slider mb-8 pb-4">
-         
+        <div className="relative pb-10">      
          <Swiper
   spaceBetween={30}
   autoplay={{ delay: 2000, disableOnInteraction: false }}
-  pagination={{ clickable: true }}
+  //pagination={{ clickable: true }}
   modules={[Autoplay, Pagination]}
   loop={true}
   slidesPerView={2} // Default for all screen sizes
@@ -54,11 +54,14 @@ const BrandSlider = () => (
   }}
 >
   {brandData.map((brand, idx) => (
+
     <SwiperSlide key={idx} className="flex items-center justify-center">
       <SingleBrand brand={brand} />
     </SwiperSlide>
   ))}
+
 </Swiper>
+</div>
         </div>
       </motion.div>
     </section>

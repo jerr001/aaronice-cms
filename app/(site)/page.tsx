@@ -33,6 +33,7 @@ export default function Home() {
       <FeaturesTab />
       <FunFact />
       <Team />
+       
 
       <CTA />
 

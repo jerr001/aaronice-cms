@@ -25,7 +25,7 @@ const FeaturesTab = () => {
                               }}
                      />
 
-        <div className="relative mx-auto max-w-c-1390 px-4 pt-5 md:px-8 2xl:px-0">
+        <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-8 md:px-12 xl:px-16 2xl:px-20 pt-5">
           <div className="absolute -top-16 -z-1 mx-auto h-[350px] w-[90%]">
             <Image
               fill
