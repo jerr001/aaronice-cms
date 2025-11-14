@@ -10,27 +10,35 @@ export async function POST(request: NextRequest) {
     if (!fullName || !email || !subject || !message) {
       return NextResponse.json(
         { error: "Missing required fields." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    // Create reusable transporter object using SMTP transport (configure below)
-    let transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST, // for gmail SMTP
-      port: process.env.MAIL_PORT, // default is 587 for TLS
-      secure: process.env.MAIL_SECURE, // true for 465, false for other ports
-     // requireTLS: true, 
-      auth: {
-        user: process.env.MAIL_USERNAME, // your gmail or SMTP email
-        pass: process.env.MAIL_PASSWORD, // your gmail app password or SMTP password
-      },
-    });
-    // console.log(process.env.MAIL_FROM_NAME, process.env.MAIL_HOST, process.env.MAIL_PORT, process.env.MAIL_USERNAME, process.env.MAIL_PASSWORD, process.env.MAIL_SECURE);
+    console.log("=== Email Configuration ===");
+    console.log("Host:", process.env.MAIL_HOST);
+    console.log("Port:", process.env.MAIL_PORT);
+    console.log("Secure:", process.env.MAIL_SECURE);
+    console.log("Username:", process.env.MAIL_USERNAME);
+    console.log("Password exists:", !!process.env.MAIL_PASSWORD);
 
-    // Email message content
+    let transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: parseInt(process.env.MAIL_PORT || "465"),
+      secure: process.env.MAIL_SECURE === "true",
+      auth: {
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+    });
+
     const mailOptions = {
-      from: `"Aaronice Website" <${process.env.MAIL_FROM_ADDRESS}>`, // sender address
-      to: `${process.env.MAIL_TO_ADDRESS}`, // your receiving email
+      from: `"Aaronice Website" <${process.env.MAIL_FROM_ADDRESS}>`,
+      to: `${process.env.MAIL_TO_ADDRESS}`,
       subject: `New Contact Form: ${subject}`,
       text: `
 You have received a new message from the website contact form.
@@ -51,15 +59,24 @@ ${message}
       `,
     };
 
-    // Send mail
+    console.log("Attempting to send email...");
     await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully!");
 
     return NextResponse.json({ message: "Message sent successfully." });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("=== Email Error ===");
+    console.error("Error details:", error);
+    console.error(
+      "Error message:",
+      error instanceof Error ? error.message : "Unknown error",
+    );
     return NextResponse.json(
-      { error: "Failed to send message." },
-      { status: 500 }
+      {
+        error: "Failed to send message.",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
     );
   }
 }

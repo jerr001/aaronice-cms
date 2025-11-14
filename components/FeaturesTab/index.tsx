@@ -12,20 +12,26 @@ const FeaturesTab = () => {
 
   return (
     <>
-      {/* <!-- ===== Features Tab Start ===== --> */}
-      <section className="relative pb-20 pt-18.5 lg:pb-22.5">
+      <section className="relative bg-white pt-18.5 pb-20 lg:pb-22.5 dark:bg-black">
+        <div className="absolute inset-0 -z-10 opacity-[0.02] dark:opacity-[0.01]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%23f97316' stroke-width='1'/%3E%3C/svg%3E")`,
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
+        </div>
 
-         {/* <div className="text-center text-gray-500 px-2 pt-0 pb-3 text-xl font-medium"> Our Projects </div> */}
+        <SectionHeader
+          headerInfo={{
+            title: "OUR PROJECTS",
+            subtitle: "Innovative IT Solutions That Power Progress",
+            description: `We create smart IT solutions that meet global standards and drive real impact for businesses and communities.`,
+          }}
+        />
 
-          <SectionHeader
-                              headerInfo={{
-                                title: "OUR PROJECTS",
-                                subtitle: "Innovative IT Solutions That Power Progress",
-                                description: `We create smart IT solutions that meet global standards and drive real impact for businesses and communities.`,
-                              }}
-                     />
-
-        <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-8 md:px-12 xl:px-16 2xl:px-20 pt-5">
+        <div className="relative mx-auto w-full max-w-7xl px-6 pt-5 sm:px-8 md:px-12 xl:px-16 2xl:px-20">
           <div className="absolute -top-16 -z-1 mx-auto h-[350px] w-[90%]">
             <Image
               fill
@@ -41,7 +47,6 @@ const FeaturesTab = () => {
             />
           </div>
 
-          {/* <!-- Tab Menues Start --> */}
           <motion.div
             variants={{
               hidden: {
@@ -58,17 +63,17 @@ const FeaturesTab = () => {
             whileInView="visible"
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="animate_top mb-15 flex flex-wrap justify-center rounded-[10px] border border-stroke bg-white shadow-solid-5 dark:border-strokedark dark:bg-blacksection dark:shadow-solid-6 md:flex-nowrap md:items-center lg:gap-7.5 xl:mb-21.5 xl:gap-12.5"
+            className="animate_top border-stroke shadow-solid-5 dark:border-strokedark dark:bg-blacksection dark:shadow-solid-6 mb-15 flex flex-wrap justify-center rounded-[10px] border bg-white md:flex-nowrap md:items-center lg:gap-7.5 xl:mb-21.5 xl:gap-12.5"
           >
             <div
               onClick={() => setCurrentTab("tabOne")}
-              className={`relative flex w-full cursor-pointer items-center gap-4 border-b border-stroke px-6 py-2 last:border-0 dark:border-strokedark md:w-auto md:border-0 xl:px-13.5 xl:py-5 ${
+              className={`border-stroke dark:border-strokedark relative flex w-full cursor-pointer items-center gap-4 border-b px-6 py-2 last:border-0 md:w-auto md:border-0 xl:px-13.5 xl:py-5 ${
                 currentTab === "tabOne"
                   ? "active before:absolute before:bottom-0 before:left-0 before:h-1 before:w-full before:rounded-tl-[4px] before:rounded-tr-[4px] before:bg-orange-400"
                   : ""
               }`}
             >
-              <div className="flex h-12.5 w-12.5 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+              <div className="border-stroke dark:border-strokedark dark:bg-blacksection flex h-12.5 w-12.5 items-center justify-center rounded-[50%] border">
                 <p className="text-metatitle3 font-medium text-black dark:text-white">
                   01
                 </p>
@@ -81,40 +86,40 @@ const FeaturesTab = () => {
             </div>
             <div
               onClick={() => setCurrentTab("tabTwo")}
-              className={`relative flex w-full cursor-pointer items-center gap-4 border-b border-stroke px-6 py-2 last:border-0 dark:border-strokedark md:w-auto md:border-0 xl:px-13.5 xl:py-5 ${
+              className={`border-stroke dark:border-strokedark relative flex w-full cursor-pointer items-center gap-4 border-b px-6 py-2 last:border-0 md:w-auto md:border-0 xl:px-13.5 xl:py-5 ${
                 currentTab === "tabTwo"
                   ? "active before:absolute before:bottom-0 before:left-0 before:h-1 before:w-full before:rounded-tl-[4px] before:rounded-tr-[4px] before:bg-orange-400"
                   : ""
               }`}
             >
-              <div className="flex h-12.5 w-12.5 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+              <div className="border-stroke dark:border-strokedark dark:bg-blacksection flex h-12.5 w-12.5 items-center justify-center rounded-[50%] border">
                 <p className="text-metatitle3 font-medium text-black dark:text-white">
                   02
                 </p>
               </div>
               <div className="md:w-3/5 lg:w-auto">
                 <button className="text-xs font-medium text-black dark:text-white">
-                   Scalable Cloud-Native Infrastructure for FinSecAfrica
+                  Scalable Cloud-Native Infrastructure for FinSecAfrica
                 </button>
               </div>
             </div>
             <div
               onClick={() => setCurrentTab("tabThree")}
-              className={`relative flex w-full cursor-pointer items-center gap-4 border-b border-stroke px-6 py-2 last:border-0 dark:border-strokedark md:w-auto md:border-0 xl:px-13.5 xl:py-5 ${
+              className={`border-stroke dark:border-strokedark relative flex w-full cursor-pointer items-center gap-4 border-b px-6 py-2 last:border-0 md:w-auto md:border-0 xl:px-13.5 xl:py-5 ${
                 currentTab === "tabThree"
                   ? "active before:absolute before:bottom-0 before:left-0 before:h-1 before:w-full before:rounded-tl-[4px] before:rounded-tr-[4px] before:bg-orange-400"
                   : ""
               }`}
             >
-              <div className="flex h-12.5 w-12.5 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+              <div className="border-stroke dark:border-strokedark dark:bg-blacksection flex h-12.5 w-12.5 items-center justify-center rounded-[50%] border">
                 <p className="text-metatitle3 font-medium text-black dark:text-white">
                   03
                 </p>
               </div>
               <div className="md:w-3/5 lg:w-auto">
                 <button className="text-xs font-medium text-black dark:text-white">
-                  Enterprise Big Data & AI Insights Platform for Global HXGS Leader
-
+                  Enterprise Big Data & AI Insights Platform for Global HXGS
+                  Leader
                 </button>
               </div>
             </div>
@@ -138,7 +143,7 @@ const FeaturesTab = () => {
             whileInView="visible"
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
-            className="animate_top mx-auto max-w-c-1154"
+            className="animate_top max-w-c-1154 mx-auto"
           >
             {featuresTabData.map((feature, key) => (
               <div

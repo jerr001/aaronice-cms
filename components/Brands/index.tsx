@@ -12,8 +12,8 @@ import brandData from "./brandData";
 
 const BrandSlider = () => (
   <>
-    <section className="border border-x-0 border-y-stroke bg-alabaster py-8 dark:border-y-strokedark dark:bg-black">
-      <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
+    <section className="border-y-stroke bg-alabaster dark:border-y-strokedark border border-x-0 py-8 dark:bg-black">
+      <div className="max-w-c-1315 mx-auto px-4 md:px-8 xl:px-0">
         <div className="animate_top mx-auto text-center">
           <SectionHeader
             headerInfo={{
@@ -34,34 +34,35 @@ const BrandSlider = () => (
         whileInView="visible"
         transition={{ duration: 1, delay: 0.1 }}
         viewport={{ once: true }}
-        className="animate_top mx-auto mt-10 max-w-c-1390 px-4 md:px-8 xl:mt-15 xl:px-0"
+        className="animate_top max-w-c-1390 mx-auto mt-10 px-4 md:px-8 xl:mt-15 xl:px-0"
       >
         <div className="swiper brand-slider mb-8 pb-4">
-        <div className="relative pb-10">      
-         <Swiper
-  spaceBetween={30}
-  autoplay={{ delay: 2000, disableOnInteraction: false }}
-  //pagination={{ clickable: true }}
-  modules={[Autoplay, Pagination]}
-  loop={true}
-  slidesPerView={2} // Default for all screen sizes
-  breakpoints={{
-    0: { slidesPerView: 2 },
-    640: { slidesPerView: 2 },
-    768: { slidesPerView: 2 },
-    1024: { slidesPerView: 2 },
-    1280: { slidesPerView: 2 },
-  }}
->
-  {brandData.map((brand, idx) => (
-
-    <SwiperSlide key={idx} className="flex items-center justify-center">
-      <SingleBrand brand={brand} />
-    </SwiperSlide>
-  ))}
-
-</Swiper>
-</div>
+          <div className="relative pb-10">
+            <Swiper
+              spaceBetween={30}
+              autoplay={{ delay: 2000, disableOnInteraction: false }}
+              //pagination={{ clickable: true }}
+              modules={[Autoplay, Pagination]}
+              loop={true}
+              slidesPerView={2} // Default for mobile
+              breakpoints={{
+                0: { slidesPerView: 2 },
+                640: { slidesPerView: 3 },
+                768: { slidesPerView: 4 },
+                1024: { slidesPerView: 5 },
+                1280: { slidesPerView: 6 },
+              }}
+            >
+              {brandData.map((brand, idx) => (
+                <SwiperSlide
+                  key={idx}
+                  className="flex items-center justify-center"
+                >
+                  <SingleBrand brand={brand} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       </motion.div>
     </section>
@@ -73,7 +74,6 @@ export default BrandSlider;
 // "use client";
 // import "keen-slider/keen-slider.min.css";
 // import { useKeenSlider } from "keen-slider/react";
-
 
 // import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css";
@@ -129,7 +129,7 @@ export default BrandSlider;
 //     <>
 //       {/* <!-- ===== Clients Start ===== --> */}
 //       <section className="border border-x-0 border-y-stroke bg-alabaster py-5 dark:border-y-strokedark dark:bg-black">
-       
+
 //            <SectionHeader
 //                      headerInfo={{
 //                        title: "OUR CLIENTS",

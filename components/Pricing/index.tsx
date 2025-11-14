@@ -6,8 +6,8 @@ const Pricing = () => {
   return (
     <>
       {/* <!-- ===== Pricing Table Start ===== --> */}
-      <section className="overflow-hidden pb-20 pt-15 lg:pb-25 xl:pb-30">
-        <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
+      <section className="overflow-hidden pt-15 pb-20 lg:pb-25 xl:pb-30">
+        <div className="max-w-c-1315 mx-auto px-4 md:px-8 xl:px-0">
           {/* <!-- Section Title Start --> */}
           <div className="animate_top mx-auto text-center">
             <SectionHeader
@@ -25,39 +25,45 @@ const Pricing = () => {
           <div className="absolute -bottom-15 -z-1 h-full w-full">
             <Image
               fill
-              src="./images/shape/shape-dotted-light.svg"
+              src="/images/shape/shape-dotted-light.svg"
               alt="Dotted"
               className="dark:hidden"
             />
           </div>
           <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5">
             {/* <!-- Pricing Item --> */}
-            <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%] lg:w-1/3 xl:p-12.5">
-              <h3 className="mb-7.5 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
-                 Duration:
+            <div className="animate_top group border-stroke shadow-solid-10 dark:border-strokedark dark:bg-blacksection relative rounded-lg border bg-white p-7.5 md:w-[45%] lg:w-1/3 xl:p-12.5 dark:shadow-none">
+              <h3 className="xl:text-sectiontitle3 mb-7.5 text-3xl font-bold text-black dark:text-white">
+                Duration:
                 <span className="text-regular text-waterloo dark:text-manatee">
                   &nbsp; 6 months
                 </span>
               </h3>
-              <h4 className="mb-2.5 text-para2 font-medium text-orange-400 dark:text-white">
-                 AI Automation 
+              <h4 className="text-para2 mb-2.5 font-medium text-orange-400 dark:text-white">
+                AI Automation
               </h4>
-              <p className=""> Learn the foundations of artificial intelligence and how to build automated systems using tools like Python and cloud services. This course focuses on real-world automation solutions across industries. </p>
-              
-               
-              <div className="mt-9 border-t border-stroke pb-12.5 pt-3 dark:border-strokedark">
-                <p className="text-bold text-orange-400 dark:text-white py-2">Career Opportunities</p>
+              <p className="">
+                {" "}
+                Learn the foundations of artificial intelligence and how to
+                build automated systems using tools like Python and cloud
+                services. This course focuses on real-world automation solutions
+                across industries.{" "}
+              </p>
+
+              <div className="border-stroke dark:border-strokedark mt-9 border-t pt-3 pb-12.5">
+                <p className="text-bold py-2 text-orange-400 dark:text-white">
+                  Career Opportunities
+                </p>
                 <ul>
-                  <li className="mb-3 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-3 text-black last:mb-0">
                     AI developers
                   </li>
-                  <li className="mb-3 text-black last:mb-0 dark:text-manatee">
-                  Automation engineers
+                  <li className="dark:text-manatee mb-3 text-black last:mb-0">
+                    Automation engineers
                   </li>
-                  <li className="mb-3 text-black last:mb-0 dark:text-manatee">
-                   Machine learning specialists 
+                  <li className="dark:text-manatee mb-3 text-black last:mb-0">
+                    Machine learning specialists
                   </li>
-                 
                 </ul>
               </div>
 
@@ -66,7 +72,7 @@ const Pricing = () => {
                 className="group/btn inline-flex items-center gap-2.5 font-medium text-orange-400 transition-all duration-300 dark:text-white dark:hover:text-orange-400"
               >
                 <span className="duration-300 group-hover/btn:pr-2">
-                   Subscribe Now
+                  Subscribe Now
                 </span>
                 <svg
                   width="14"
@@ -83,34 +89,34 @@ const Pricing = () => {
             </div>
 
             {/* <!-- Pricing Item --> */}
-            <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%] lg:w-1/3 xl:p-12.5">
-              <div className="absolute -right-3.5 top-7.5 -rotate-90 rounded-bl-full rounded-tl-full bg-primary px-4.5 py-1.5 text-metatitle font-medium uppercase text-white">
+            <div className="animate_top group border-stroke shadow-solid-10 dark:border-strokedark dark:bg-blacksection relative rounded-lg border bg-white p-7.5 md:w-[45%] lg:w-1/3 xl:p-12.5 dark:shadow-none">
+              <div className="bg-primary text-metatitle absolute top-7.5 -right-3.5 -rotate-90 rounded-tl-full rounded-bl-full px-4.5 py-1.5 font-medium text-white uppercase">
                 popular
               </div>
 
-              <h3 className="mb-7.5 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
+              <h3 className="xl:text-sectiontitle3 mb-7.5 text-3xl font-bold text-black dark:text-white">
                 $59{" "}
                 <span className="text-regular text-waterloo dark:text-manatee">
                   /month
                 </span>
               </h3>
-              <h4 className="mb-2.5 text-para2 font-medium text-black dark:text-white">
+              <h4 className="text-para2 mb-2.5 font-medium text-black dark:text-white">
                 Medium Pack
               </h4>
               <p>Lorem ipsum dolor sit amet, consec adipisicing elit.</p>
 
-              <div className="mt-9 border-t border-stroke pb-12.5 pt-9 dark:border-strokedark">
+              <div className="border-stroke dark:border-strokedark mt-9 border-t pt-9 pb-12.5">
                 <ul>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     300 GB Storage
                   </li>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     Unlimited Photos and Videos
                   </li>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     Exclusive Support
                   </li>
-                  <li className="mb-4 text-black opacity-40 last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black opacity-40 last:mb-0">
                     Custom Branding Strategy
                   </li>
                 </ul>
@@ -118,7 +124,7 @@ const Pricing = () => {
 
               <button
                 aria-label="Get the Plan button"
-                className="group/btn inline-flex items-center gap-2.5 font-medium text-primary transition-all duration-300 dark:text-white dark:hover:text-primary"
+                className="group/btn text-primary dark:hover:text-primary inline-flex items-center gap-2.5 font-medium transition-all duration-300 dark:text-white"
               >
                 <span className="duration-300 group-hover/btn:pr-2">
                   Get the Plan
@@ -138,30 +144,30 @@ const Pricing = () => {
             </div>
 
             {/* <!-- Pricing Item --> */}
-            <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%] lg:w-1/3 xl:p-12.5">
-              <h3 className="mb-7.5 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
+            <div className="animate_top group border-stroke shadow-solid-10 dark:border-strokedark dark:bg-blacksection relative rounded-lg border bg-white p-7.5 md:w-[45%] lg:w-1/3 xl:p-12.5 dark:shadow-none">
+              <h3 className="xl:text-sectiontitle3 mb-7.5 text-3xl font-bold text-black dark:text-white">
                 $189{" "}
                 <span className="text-regular text-waterloo dark:text-manatee">
                   /month
                 </span>
               </h3>
-              <h4 className="mb-2.5 text-para2 font-medium text-black dark:text-white">
+              <h4 className="text-para2 mb-2.5 font-medium text-black dark:text-white">
                 Large Pack
               </h4>
               <p>Lorem ipsum dolor sit amet, consec adipisicing elit.</p>
 
-              <div className="mt-9 border-t border-stroke pb-12.5 pt-9 dark:border-strokedark">
+              <div className="border-stroke dark:border-strokedark mt-9 border-t pt-9 pb-12.5">
                 <ul>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     300 GB Storage
                   </li>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     Unlimited Photos and Videos
                   </li>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     Exclusive Support
                   </li>
-                  <li className="mb-4 text-black last:mb-0 dark:text-manatee">
+                  <li className="dark:text-manatee mb-4 text-black last:mb-0">
                     Custom Branding Strategy
                   </li>
                 </ul>
@@ -169,7 +175,7 @@ const Pricing = () => {
 
               <button
                 aria-label="Get the Plan button"
-                className="group/btn inline-flex items-center gap-2.5 font-medium text-primary transition-all duration-300 dark:text-white dark:hover:text-primary"
+                className="group/btn text-primary dark:hover:text-primary inline-flex items-center gap-2.5 font-medium transition-all duration-300 dark:text-white"
               >
                 <span className="duration-300 group-hover/btn:pr-2">
                   Get the Plan

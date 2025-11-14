@@ -16,30 +16,50 @@ import Team from "@/components/Team";
 import Courses from "@/components/Courses";
 
 export const metadata: Metadata = {
-  title: "Aaronice Prime Global Company Ltd - We lead the future of technology with intelligent software solutions and expert-led tech training—empowering individuals and corporate bodies to thrive in a digital-first world.",
-
-  // other metadata
-  description: "AI and Tech professionals, Tech Website, AI and automation solutions"
+  title: "Home - Premier AI & Tech Solutions Training in Nigeria",
+  description:
+    "Aaronice Prime offers AI automation, custom software development, digital transformation consulting, and professional tech training bootcamps in Nigeria. Learn Web Development, Data Analysis, UI/UX Design, Digital Marketing & more.",
+  keywords:
+    "AI automation Nigeria, software development Lagos, tech bootcamp, digital transformation, web development training, data analysis course, UI/UX design Nigeria, IT consulting, tech skills training",
+  openGraph: {
+    title: "Aaronice Prime | Premier AI & Tech Solutions Training",
+    description:
+      "Transform your business with AI automation and custom software solutions. Join our expert-led tech training bootcamps across Nigeria.",
+    url: "https://aaronice.com",
+    images: [
+      {
+        url: "/images/logo/logo-dark.svg",
+        width: 1200,
+        height: 630,
+        alt: "Aaronice Prime - AI & Tech Solutions",
+      },
+    ],
+  },
 };
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <Brands />
+      <div className="bg-gray-50 dark:bg-gray-900">
+        <Brands />
+      </div>
       <Feature />
-      <Courses />
-  
+      <div className="bg-orange-50 dark:bg-gray-900">
+        <Courses />
+      </div>
       <FeaturesTab />
-      <FunFact />
+      <div className="bg-gray-50 dark:bg-gray-900">
+        <FunFact />
+      </div>
       <Team />
-       
-
-      <CTA />
-
+      <div className="bg-orange-50 dark:bg-gray-900">
+        <CTA />
+      </div>
       <Testimonial />
-      <Contact />
-     
+      <div className="bg-gray-50 dark:bg-gray-900">
+        <Contact />
+      </div>
     </main>
   );
 }

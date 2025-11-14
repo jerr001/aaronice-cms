@@ -14,9 +14,8 @@ const FAQ = () => {
 
   return (
     <>
-      {/* <!-- ===== FAQ Start ===== --> */}
       <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
-        <div className="relative mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
+        <div className="max-w-c-1235 relative mx-auto px-4 md:px-8 xl:px-0">
           <div className="absolute -bottom-16 -z-1 h-full w-full">
             <Image
               fill
@@ -50,19 +49,19 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="animate_left md:w-2/5 lg:w-1/2"
             >
-              <span className="font-medium uppercase text-black dark:text-white">
+              <span className="font-medium text-black uppercase dark:text-white">
                 OUR FAQS
               </span>
-              <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
+              <h2 className="xl:text-hero relative mb-6 text-3xl font-bold text-black dark:text-white">
                 Frequently Asked
-                <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-titlebg2 dark:before:bg-titlebgdark">
+                <span className="before:bg-titlebg2 dark:before:bg-titlebgdark relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full">
                   Questions
                 </span>
               </h2>
 
               <a
                 href="#"
-                className="group mt-7.5 inline-flex items-center gap-2.5 text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                className="group hover:text-primary dark:hover:text-primary mt-7.5 inline-flex items-center gap-2.5 text-black dark:text-white"
               >
                 <span className="duration-300 group-hover:pr-2">Know More</span>
                 <svg
@@ -97,7 +96,7 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="animate_right md:w-3/5 lg:w-1/2"
             >
-              <div className="rounded-lg bg-white shadow-solid-8 dark:border dark:border-strokedark dark:bg-blacksection">
+              <div className="shadow-solid-8 dark:border-strokedark dark:bg-blacksection rounded-lg bg-white dark:border">
                 {faqData.map((faq, key) => (
                   <FAQItem
                     key={key}
@@ -109,7 +108,6 @@ const FAQ = () => {
           </div>
         </div>
       </section>
-      {/* <!-- ===== FAQ End ===== --> */}
     </>
   );
 };
