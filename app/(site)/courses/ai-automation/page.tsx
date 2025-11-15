@@ -4,7 +4,7 @@ export default function AIAutomationPage() {
   return (
     <main className="bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-500 to-orange-600 pt-32 pb-20 text-white md:pt-36 lg:pt-40">
+      <section className="relative bg-gradient-to-r from-orange-500 to-orange-600 pt-40 pb-20 text-white md:pt-44 lg:pt-48">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
