@@ -27,9 +27,9 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-99999 w-full py-5 transition-all duration-300 ${
+      className={`fixed top-0 left-0 z-99999 w-full py-3 transition-all duration-300 md:py-5 ${
         stickyMenu
-          ? "border-b border-orange-100 bg-orange-50/95 py-3 shadow-lg backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/95"
+          ? "border-b border-orange-100 bg-orange-50/95 py-2 shadow-lg backdrop-blur-md md:py-3 dark:border-gray-800 dark:bg-gray-900/95"
           : "bg-orange-50/60 backdrop-blur-sm dark:bg-gray-900/60"
       }`}
     >
@@ -42,14 +42,14 @@ const Header = () => {
               alt="logo"
               width={150}
               height={50}
-              className="hidden w-full dark:block"
+              className="hidden w-28 md:w-full dark:block"
             />
             <Image
               src="/images/logo/banner-light.png"
               alt="logo"
               width={150}
               height={50}
-              className="w-full dark:hidden"
+              className="w-28 md:w-full dark:hidden"
             />
           </a>
         </div>
