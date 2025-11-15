@@ -210,11 +210,13 @@ const Contact = () => {
                 </p>
               </div>
               <div className="mb-7">
-                <h3 className="text-metatitle3 mb-4 font-medium text-orange-400 dark:text-white">
+                <p className="text-body-color mb-1 text-base font-medium">
                   Email Address
-                </h3>
-                <p>
-                  <a href="#">support@aaronice.com</a>
+                </p>
+                <p className="text-dark text-base font-medium dark:text-white">
+                  <a href="mailto:aaronicepgcltd@gmail.com">
+                    aaronicepgcltd@gmail.com
+                  </a>
                 </p>
               </div>
               <div>

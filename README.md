@@ -90,7 +90,7 @@ Configured for deployment on Vercel, Netlify, or any Node.js hosting platform.
 ## 📞 Contact
 
 - **Website:** https://aaronice.com
-- **Email:** support@aaronice.com
+- **Email:** aaronicepgcltd@gmail.com
 - **Phone:** +234 802 472 7665
 
 ## 🔗 Social Media
