@@ -48,7 +48,7 @@ const Hero = () => {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+            <div className="flex flex-col gap-4 md:flex-col lg:flex-row lg:gap-6">
               <a
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
