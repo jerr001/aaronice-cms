@@ -214,8 +214,8 @@ const Contact = () => {
                   Email Address
                 </p>
                 <p className="text-dark text-base font-medium dark:text-white">
-                  <a href="mailto:aaronicepgcltd@gmail.com">
-                    aaronicepgcltd@gmail.com
+                  <a href="mailto:support@aaronice.com">
+                    support@aaronice.com
                   </a>
                 </p>
               </div>

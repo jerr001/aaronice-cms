@@ -12,7 +12,7 @@ export default function StructuredData() {
     logo: "https://aaronice.com/images/logo/logo-dark.svg",
     description:
       "Leading technology company specializing in AI automation, custom software development, digital transformation, and expert-led tech training.",
-    email: "aaronicepgcltd@gmail.com",
+    email: "support@aaronice.com",
     telephone: "+234-802-472-7665",
     address: {
       "@type": "PostalAddress",
