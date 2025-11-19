@@ -4,7 +4,7 @@ export default function FrontendPage() {
   return (
     <main className="bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-500 to-orange-600 pt-52 pb-20 text-white sm:pt-56 md:pt-60 lg:pt-64">
+      <section className="relative bg-gradient-to-r from-orange-500 to-orange-600 pt-52 pb-20 text-white sm:pt-56 md:pt-64 lg:pt-72">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
