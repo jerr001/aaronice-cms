@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 
@@ -18,6 +18,20 @@ const WaitlistForm = () => {
     course: preselectedCourse,
     paymentOption: "full", // "full" or "part"
   });
+
+  // Load form data from sessionStorage if returning from payment
+  useEffect(() => {
+    const savedFormData = sessionStorage.getItem("waitlistFormData");
+    if (savedFormData) {
+      try {
+        const parsedData = JSON.parse(savedFormData);
+        setFormData(parsedData);
+        toast.success("You can now edit your details before proceeding");
+      } catch (error) {
+        console.error("Error parsing saved form data:", error);
+      }
+    }
+  }, []);
 
   const coursePricing: { [key: string]: number } = {
     frontend: 150000,
@@ -47,6 +61,9 @@ const WaitlistForm = () => {
       console.log("Course price:", coursePrice);
       console.log("Payment option:", formData.paymentOption);
       console.log("Payment amount:", paymentAmount);
+
+      // Save form data to sessionStorage before proceeding to payment
+      sessionStorage.setItem("waitlistFormData", JSON.stringify(formData));
 
       console.log("Saving to waitlist...");
 
@@ -182,6 +199,19 @@ const WaitlistForm = () => {
       toast.error(errorMessage);
       setIsLoading(false);
     }
+  };
+
+  const handleClearForm = () => {
+    sessionStorage.removeItem("waitlistFormData");
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      countryCode: "+234",
+      course: preselectedCourse,
+      paymentOption: "full",
+    });
+    toast.success("Form cleared");
   };
 
   const verifyPayment = async (transactionId: string) => {
@@ -439,6 +469,15 @@ const WaitlistForm = () => {
             disabled={isLoading}
           >
             {isLoading ? "Processing..." : "Join Waitlist"}
+          </button>
+        </div>
+        <div>
+          <button
+            type="button"
+            onClick={handleClearForm}
+            className="w-full cursor-pointer rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition duration-300 ease-in-out hover:border-gray-400 hover:bg-gray-50 dark:border-gray-600 dark:bg-transparent dark:text-white dark:hover:border-gray-500 dark:hover:bg-gray-800"
+          >
+            Start Over
           </button>
         </div>
       </form>
