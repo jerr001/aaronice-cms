@@ -182,7 +182,7 @@ export default function GraphicDesignPage() {
                         Format
                       </p>
                       <p className="font-semibold text-black dark:text-white">
-                        Online & In-Person
+                        Virtual Classes
                       </p>
                     </div>
                     <div>

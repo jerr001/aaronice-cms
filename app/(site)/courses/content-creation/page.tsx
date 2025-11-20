@@ -186,7 +186,7 @@ export default function ContentCreationPage() {
                         Format
                       </p>
                       <p className="font-semibold text-black dark:text-white">
-                        Online & In-Person
+                        Virtual Classes
                       </p>
                     </div>
                     <div>

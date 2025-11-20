@@ -25,7 +25,7 @@ const Feature = () => {
           <SectionHeader
             headerInfo={{
               title: "OUR SERVICES",
-              subtitle: "Core Offerings at Aaronic Prime",
+              subtitle: "Core Offerings at Aaronice Prime",
               description: `We offer a broad range of IT services, including software development, digital automation, and research, tailored to meet your business needs.`,
             }}
           />

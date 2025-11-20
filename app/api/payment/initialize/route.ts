@@ -64,12 +64,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Get redirect URL with fallback
-    const redirectUrl = process.env.NEXT_PUBLIC_APP_URL
-      ? `${process.env.NEXT_PUBLIC_APP_URL}/payment-success`
-      : "https://aaronice.com/payment-success";
+    // Get redirect URLs with fallback
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://aaronice.org";
+    const redirectUrl = `${baseUrl}/payment-success`;
+    const cancelUrl = `${baseUrl}/payment-cancelled`;
 
     console.log("Redirect URL:", redirectUrl);
+    console.log("Cancel URL:", cancelUrl);
 
     const txRef = `TX-${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
 
@@ -82,86 +83,118 @@ export async function POST(request: Request) {
     // Get logo URL with fallback
     const logoUrl = process.env.NEXT_PUBLIC_APP_URL
       ? `${process.env.NEXT_PUBLIC_APP_URL}/images/logo/logo-light.svg`
-      : "https://aaronice.com/images/logo/logo-light.svg";
+      : "https://aaronice.org/images/logo/logo-light.svg";
 
-    // Use retry logic for Flutterwave API call
-    const response = await fetchWithRetry(
-      "https://api.flutterwave.com/v3/payments",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${FLUTTERWAVE_SECRET_KEY}`,
+    // Use retry logic for Flutterwave API call with 30 second timeout
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+    try {
+      const response = await fetchWithRetry(
+        "https://api.flutterwave.com/v3/payments",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${FLUTTERWAVE_SECRET_KEY}`,
+          },
+          body: JSON.stringify({
+            tx_ref: txRef,
+            amount: amount,
+            currency: "NGN",
+            redirect_url: redirectUrl,
+            meta: {
+              cancel_url: cancelUrl,
+            },
+            customer: {
+              email,
+              name,
+              phonenumber: phone,
+            },
+            customizations: {
+              title: "Aaronice Course Registration",
+              description:
+                paymentOption === "part"
+                  ? `Part Payment (65%) - Course Registration`
+                  : "Course registration payment",
+              logo: logoUrl,
+            },
+          }),
+          signal: controller.signal,
         },
-        body: JSON.stringify({
-          tx_ref: txRef,
-          amount: amount,
-          currency: "NGN",
-          redirect_url: redirectUrl,
-          customer: {
+      );
+      clearTimeout(timeout);
+
+      const flutterwaveResponse = await response.json();
+      console.log("Flutterwave response status:", flutterwaveResponse.status);
+
+      if (flutterwaveResponse.status === "success") {
+        try {
+          console.log("Saving transaction to database...");
+          const client = await clientPromise;
+          const database = client.db("aaronice_db");
+          const collection = database.collection("transactions");
+
+          await collection.insertOne({
+            txRef,
             email,
+            amount,
+            totalAmount: totalAmount || amount,
+            paymentOption: paymentOption || "full",
             name,
-            phonenumber: phone,
-          },
-          customizations: {
-            title: "Aaronice Course Registration",
-            description:
-              paymentOption === "part"
-                ? `Part Payment (65%) - Course Registration`
-                : "Course registration payment",
-            logo: logoUrl,
-          },
-        }),
-      },
-    );
-
-    const flutterwaveResponse = await response.json();
-    console.log("Flutterwave response status:", flutterwaveResponse.status);
-
-    if (flutterwaveResponse.status === "success") {
-      try {
-        console.log("Saving transaction to database...");
-        const client = await clientPromise;
-        const database = client.db("aaronice_db");
-        const collection = database.collection("transactions");
-
-        await collection.insertOne({
-          txRef,
-          email,
-          amount,
-          totalAmount: totalAmount || amount,
-          paymentOption: paymentOption || "full",
-          name,
-          phone,
-          status: "pending",
-          createdAt: new Date(),
-          paymentLink: flutterwaveResponse.data.link,
-        });
-
-        console.log("Transaction saved successfully");
-        return NextResponse.json(
-          {
+            phone,
+            status: "pending",
+            createdAt: new Date(),
             paymentLink: flutterwaveResponse.data.link,
-            txRef,
-          },
-          { status: 200 },
-        );
-      } catch (dbError) {
-        console.error("Database error:", dbError);
-        // Return payment link even if DB save fails
-        return NextResponse.json(
-          {
-            paymentLink: flutterwaveResponse.data.link,
-            txRef,
-            warning: "Payment link generated but database save failed",
-          },
-          { status: 200 },
+          });
+
+          console.log("Transaction saved successfully");
+          return NextResponse.json(
+            {
+              paymentLink: flutterwaveResponse.data.link,
+              txRef,
+            },
+            { status: 200 },
+          );
+        } catch (dbError) {
+          console.error("Database error:", dbError);
+          // Return payment link even if DB save fails
+          return NextResponse.json(
+            {
+              paymentLink: flutterwaveResponse.data.link,
+              txRef,
+              warning: "Payment link generated but database save failed",
+            },
+            { status: 200 },
+          );
+        }
+      } else {
+        console.error("Flutterwave error:", flutterwaveResponse);
+        throw new Error(
+          flutterwaveResponse.message || "Payment initialization failed",
         );
       }
-    } else {
-      console.error("Flutterwave error:", flutterwaveResponse);
-      throw new Error(
-        flutterwaveResponse.message || "Payment initialization failed",
+    } catch (error) {
+      clearTimeout(timeout);
+      console.error("Payment initialization error:", error);
+
+      // Check if it's a timeout error
+      if (error instanceof Error && error.name === "AbortError") {
+        return NextResponse.json(
+          {
+            message: "Payment request timed out. Please try again.",
+            error: "Request timeout",
+          },
+          { status: 504 },
+        );
+      }
+
+      return NextResponse.json(
+        {
+          message: "Payment initialization failed",
+          error: error instanceof Error ? error.message : "Unknown error",
+        },
+        { status: 500 },
       );
     }
   } catch (error) {
