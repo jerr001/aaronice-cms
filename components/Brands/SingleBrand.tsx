@@ -32,20 +32,18 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
           src={image}
           alt={name}
           fill
-          loading={id <= 4 ? "eager" : "lazy"}
-          priority={id <= 4}
+          priority
           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
-          quality={75}
+          quality={85}
         />
         <Image
           className="hidden object-contain opacity-70 transition-all duration-300 hover:opacity-100 dark:block"
           src={imageLight}
           alt={name}
           fill
-          loading={id <= 4 ? "eager" : "lazy"}
-          priority={id <= 4}
+          priority
           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
-          quality={75}
+          quality={85}
         />
       </motion.a>
     </>

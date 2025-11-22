@@ -1,13 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const PaymentSuccessPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status");
 
   useEffect(() => {
-    // Redirect to WhatsApp after 3 seconds
+    // If status is cancelled, redirect to payment-cancelled page
+    if (status === "cancelled") {
+      router.push("/payment-cancelled");
+      return;
+    }
+
+    // Redirect to WhatsApp after 3 seconds for successful payments
     const timer = setTimeout(() => {
       const whatsappNumber =
         process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "2348024727665";
@@ -15,7 +23,7 @@ const PaymentSuccessPage = () => {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [status, router]);
 
   return (
     <section className="py-16 md:py-20 lg:py-28">

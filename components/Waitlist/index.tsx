@@ -10,6 +10,8 @@ const WaitlistForm = () => {
   const preselectedCourse = searchParams.get("course") || "";
 
   const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [pendingPaymentData, setPendingPaymentData] = useState<any>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -148,37 +150,16 @@ const WaitlistForm = () => {
 
       console.log("Waitlist registration successful!");
       console.log("Initializing payment...");
-      const paymentResponse = await fetch("/api/payment/initialize", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          amount: paymentAmount,
-          totalAmount: coursePrice,
-          paymentOption: formData.paymentOption,
-        }),
-      });
 
-      const paymentData = await paymentResponse.json();
-      console.log("Payment response:", paymentData);
-
-      if (!paymentResponse.ok) {
-        console.error("Payment error:", paymentData);
-        throw new Error(paymentData.message || "Payment initialization failed");
-      }
-
-      if (paymentData.paymentLink) {
-        console.log("Redirecting to payment page:", paymentData.paymentLink);
-        toast.success("Redirecting to payment...");
-        setTimeout(() => {
-          window.location.href = paymentData.paymentLink;
-        }, 500);
-      } else {
-        console.error("No payment link in response:", paymentData);
-        throw new Error("No payment link received");
-      }
+      // Show confirmation modal instead of immediately redirecting
+      const paymentInfo = {
+        formData,
+        paymentAmount,
+        coursePrice,
+      };
+      setPendingPaymentData(paymentInfo);
+      setShowConfirmation(true);
+      setIsLoading(false);
     } catch (error) {
       console.error("=== Form Submission Error ===");
       console.error("Error type:", error?.constructor?.name);
@@ -212,6 +193,61 @@ const WaitlistForm = () => {
       paymentOption: "full",
     });
     toast.success("Form cleared");
+  };
+
+  const proceedToPayment = async () => {
+    if (!pendingPaymentData) return;
+
+    setIsLoading(true);
+    setShowConfirmation(false);
+
+    try {
+      const { formData: data, paymentAmount, coursePrice } = pendingPaymentData;
+
+      const paymentResponse = await fetch("/api/payment/initialize", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          amount: paymentAmount,
+          totalAmount: coursePrice,
+          paymentOption: data.paymentOption,
+        }),
+      });
+
+      const paymentData = await paymentResponse.json();
+      console.log("Payment response:", paymentData);
+
+      if (!paymentResponse.ok) {
+        console.error("Payment error:", paymentData);
+        throw new Error(paymentData.message || "Payment initialization failed");
+      }
+
+      if (paymentData.paymentLink) {
+        console.log("Redirecting to payment page:", paymentData.paymentLink);
+        toast.success("Redirecting to payment...");
+        setTimeout(() => {
+          window.location.href = paymentData.paymentLink;
+        }, 500);
+      } else {
+        console.error("No payment link in response:", paymentData);
+        throw new Error("No payment link received");
+      }
+    } catch (error) {
+      console.error("Payment initialization error:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : "An unexpected error occurred";
+      toast.error(errorMessage);
+      setIsLoading(false);
+    }
+  };
+
+  const handleEditDetails = () => {
+    setShowConfirmation(false);
+    setPendingPaymentData(null);
+    toast.info("You can now edit your details");
   };
 
   const verifyPayment = async (transactionId: string) => {
@@ -481,6 +517,65 @@ const WaitlistForm = () => {
           </button>
         </div>
       </form>
+
+      {/* Confirmation Modal */}
+      {showConfirmation && pendingPaymentData && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4">
+          <div className="relative w-full max-w-md rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800">
+            <h3 className="mb-4 text-xl font-bold text-black dark:text-white">
+              Confirm Your Details
+            </h3>
+            <div className="mb-6 space-y-3 text-sm">
+              <p className="text-gray-600 dark:text-gray-300">
+                <strong>Name:</strong> {formData.name}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                <strong>Email:</strong> {formData.email}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                <strong>Phone:</strong> {formData.countryCode}
+                {formData.phone}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                <strong>Course:</strong>{" "}
+                {formData.course
+                  .split("-")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ")}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                <strong>Payment Option:</strong>{" "}
+                {formData.paymentOption === "full"
+                  ? "Full Payment"
+                  : "Part Payment (65%)"}
+              </p>
+              <p className="text-lg font-bold text-orange-500">
+                <strong>Amount to Pay:</strong> ₦
+                {pendingPaymentData.paymentAmount.toLocaleString()}
+              </p>
+            </div>
+            <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
+              Please review your details carefully before proceeding to payment.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleEditDetails}
+                className="flex-1 cursor-pointer rounded-md border-2 border-orange-500 bg-transparent px-4 py-3 text-base font-medium text-orange-500 transition duration-300 ease-in-out hover:bg-orange-50 dark:hover:bg-orange-900/20"
+                disabled={isLoading}
+              >
+                Edit Details
+              </button>
+              <button
+                onClick={proceedToPayment}
+                className="flex-1 cursor-pointer rounded-md border border-orange-500 bg-orange-500 px-4 py-3 text-base font-medium text-white transition duration-300 ease-in-out hover:border-orange-600 hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+                disabled={isLoading}
+              >
+                {isLoading ? "Processing..." : "Proceed to Payment"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
