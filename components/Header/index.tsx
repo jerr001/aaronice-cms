@@ -25,6 +25,12 @@ const Header = () => {
     window.addEventListener("scroll", handleStickyMenu);
   });
 
+  // Close mobile menu when clicking on a link
+  const handleMenuItemClick = () => {
+    setNavigationOpen(false);
+    setDropdownToggler(false);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 z-99999 w-full py-1.5 transition-all duration-300 md:py-2.5 lg:py-3.5 xl:py-5 ${
@@ -91,7 +97,7 @@ const Header = () => {
                             key={key}
                             className="font-medium text-gray-700 transition-colors hover:text-orange-500 dark:text-gray-300 dark:hover:text-orange-400"
                           >
-                            <Link href={item.path || "#"}>{item.title}</Link>
+                            <Link href={item.path || "#"} onClick={handleMenuItemClick}>{item.title}</Link>
                           </li>
                         ))}
                       </ul>
@@ -99,6 +105,7 @@ const Header = () => {
                   ) : (
                     <Link
                       href={`${menuItem.path}`}
+                      onClick={handleMenuItemClick}
                       className={
                         pathUrl === menuItem.path
                           ? "font-semibold text-orange-500 dark:text-orange-400"
