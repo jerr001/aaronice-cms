@@ -247,7 +247,7 @@ const WaitlistForm = () => {
   const handleEditDetails = () => {
     setShowConfirmation(false);
     setPendingPaymentData(null);
-    toast.info("You can now edit your details");
+    toast.success("You can now edit your details");
   };
 
   const verifyPayment = async (transactionId: string) => {

@@ -97,7 +97,12 @@ const Header = () => {
                             key={key}
                             className="font-medium text-gray-700 transition-colors hover:text-orange-500 dark:text-gray-300 dark:hover:text-orange-400"
                           >
-                            <Link href={item.path || "#"} onClick={handleMenuItemClick}>{item.title}</Link>
+                            <Link
+                              href={item.path || "#"}
+                              onClick={handleMenuItemClick}
+                            >
+                              {item.title}
+                            </Link>
                           </li>
                         ))}
                       </ul>
