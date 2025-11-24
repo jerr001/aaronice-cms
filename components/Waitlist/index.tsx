@@ -76,8 +76,9 @@ const WaitlistForm = () => {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 30000);
 
+      let waitlistResponse;
       try {
-        const waitlistResponse = await fetch("/api/waitlist", {
+        waitlistResponse = await fetch("/api/waitlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -94,8 +95,10 @@ const WaitlistForm = () => {
         clearTimeout(timeout);
       } catch (error) {
         clearTimeout(timeout);
-        if (error.name === 'AbortError') {
-          throw new Error("Request timed out. Please check your internet connection and try again.");
+        if (error.name === "AbortError") {
+          throw new Error(
+            "Request timed out. Please check your internet connection and try again.",
+          );
         }
         throw error;
       }
@@ -190,7 +193,9 @@ const WaitlistForm = () => {
 
       // Check if it's a timeout error
       if (error instanceof Error && error.name === "AbortError") {
-        toast.error("Request timed out. Please check your connection and try again.");
+        toast.error(
+          "Request timed out. Please check your connection and try again.",
+        );
         setIsLoading(false);
         return;
       }
@@ -254,32 +259,37 @@ const WaitlistForm = () => {
         clearTimeout(timeout);
 
         const paymentData = await paymentResponse.json();
-      console.log("Payment response:", paymentData);
+        console.log("Payment response:", paymentData);
 
-      if (!paymentResponse.ok) {
-        console.error("Payment error:", paymentData);
-        throw new Error(paymentData.message || "Payment initialization failed");
-      }
+        if (!paymentResponse.ok) {
+          console.error("Payment error:", paymentData);
+          throw new Error(
+            paymentData.message || "Payment initialization failed",
+          );
+        }
 
-      if (paymentData.paymentLink) {
-        console.log("Redirecting to payment page:", paymentData.paymentLink);
-        toast.success("Redirecting to payment...");
-        setTimeout(() => {
-          window.location.href = paymentData.paymentLink;
-        }, 500);
-      } else {
-        console.error("No payment link in response:", paymentData);
-        throw new Error("No payment link received");
+        if (paymentData.paymentLink) {
+          console.log("Redirecting to payment page:", paymentData.paymentLink);
+          toast.success("Redirecting to payment...");
+          setTimeout(() => {
+            window.location.href = paymentData.paymentLink;
+          }, 500);
+        } else {
+          console.error("No payment link in response:", paymentData);
+          throw new Error("No payment link received");
+        }
+      } catch (paymentError) {
+        // Check if it's a timeout error
+        if (
+          paymentError instanceof Error &&
+          paymentError.name === "AbortError"
+        ) {
+          toast.error("Payment request timed out. Please try again.");
+          setIsLoading(false);
+          return;
+        }
+        throw paymentError;
       }
-    } catch (paymentError) {
-      // Check if it's a timeout error
-      if (paymentError instanceof Error && paymentError.name === "AbortError") {
-        toast.error("Payment request timed out. Please try again.");
-        setIsLoading(false);
-        return;
-      }
-      throw paymentError;
-    }
     } catch (error) {
       console.error("Payment initialization error:", error);
       const errorMessage =
