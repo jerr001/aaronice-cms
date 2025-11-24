@@ -33,6 +33,9 @@ const WaitlistForm = () => {
         console.error("Error parsing saved form data:", error);
       }
     }
+
+    // Reset loading state when component mounts (user returning from payment)
+    setIsLoading(false);
   }, []);
 
   const coursePricing: { [key: string]: number } = {
