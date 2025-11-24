@@ -92,6 +92,13 @@ const WaitlistForm = () => {
         });
 
         clearTimeout(timeout);
+      } catch (error) {
+        clearTimeout(timeout);
+        if (error.name === 'AbortError') {
+          throw new Error("Request timed out. Please check your internet connection and try again.");
+        }
+        throw error;
+      }
 
       console.log("Waitlist response status:", waitlistResponse.status);
       console.log(
