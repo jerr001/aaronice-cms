@@ -22,7 +22,7 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
         }}
         initial="hidden"
         whileInView="visible"
-        transition={{ duration: 1, delay: id }}
+        transition={{ duration: 0.5, delay: 0 }}
         viewport={{ once: true }}
         href={href}
         className="animate_top relative mx-auto block h-24 w-full max-w-[200px]"
