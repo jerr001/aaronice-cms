@@ -6,9 +6,8 @@ export const metadata: Metadata = {
   description: "Join our waitlist for upcoming courses",
 };
 
-// Enable static generation for faster loads
-export const dynamic = "force-static";
-export const revalidate = 3600; // Revalidate every hour
+// Use dynamic rendering since the form uses useSearchParams
+export const dynamic = "force-dynamic";
 
 const WaitlistPage = () => {
   return (

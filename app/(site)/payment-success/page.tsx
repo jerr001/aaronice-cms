@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const PaymentSuccessPage = () => {
+function PaymentSuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const status = searchParams.get("status");
@@ -45,6 +45,32 @@ const PaymentSuccessPage = () => {
         </div>
       </div>
     </section>
+  );
+}
+
+const PaymentSuccessPage = () => {
+  return (
+    <Suspense
+      fallback={
+        <section className="py-16 md:py-20 lg:py-28">
+          <div className="container">
+            <div className="border-body-color/[.15] border-b pb-16 md:pb-20 lg:pb-28 dark:border-white/[.15]">
+              <div className="-mx-4 flex flex-wrap items-center">
+                <div className="w-full px-4">
+                  <div className="mx-auto max-w-[700px] text-center">
+                    <h1 className="mb-5 text-3xl leading-tight font-bold text-black sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight dark:text-white">
+                      Loading...
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+    >
+      <PaymentSuccessContent />
+    </Suspense>
   );
 };
 
