@@ -50,6 +50,25 @@ const WaitlistForm = () => {
     "virtual-assistant": 60000,
   };
 
+  // Phone number length mapping by country code
+  const phoneNumberLengths: { [key: string]: number } = {
+    "+1": 10,      // US, Canada
+    "+44": 10,     // UK
+    "+234": 10,    // Nigeria
+    "+27": 9,      // South Africa
+    "+254": 9,     // Kenya
+    "+233": 9,     // Ghana
+    "+256": 9,     // Uganda
+    "+255": 9,     // Tanzania
+    "+91": 10,     // India
+    "+86": 11,     // China
+    "+971": 9,     // UAE
+    "+966": 9,     // Saudi Arabia
+    "+61": 9,      // Australia
+    "+49": 10,     // Germany
+    "+33": 9,      // France
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -413,12 +432,17 @@ const WaitlistForm = () => {
               className="text-body-color placeholder-body-color shadow-one dark:shadow-signUp flex-1 rounded-md border border-transparent px-6 py-3 text-base outline-none focus:border-orange-500 focus-visible:shadow-none dark:bg-[#242B51]"
               required
               value={formData.phone}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  phone: e.target.value.replace(/[^0-9]/g, ""),
-                })
-              }
+              onChange={(e) => {
+                const input = e.target.value.replace(/[^0-9]/g, "");
+                const maxLength = phoneNumberLengths[formData.countryCode] || 15;
+                if (input.length <= maxLength) {
+                  setFormData({
+                    ...formData,
+                    phone: input,
+                  });
+                }
+              }}
+              maxLength={phoneNumberLengths[formData.countryCode] || 15}
               pattern="[0-9]*"
             />
           </div>
