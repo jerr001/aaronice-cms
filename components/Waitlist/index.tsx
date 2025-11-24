@@ -72,18 +72,26 @@ const WaitlistForm = () => {
       // Combine country code with phone number
       const fullPhoneNumber = `${formData.countryCode}${formData.phone}`;
 
-      const waitlistResponse = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          phone: fullPhoneNumber, // Send complete phone number with country code
-          totalAmount: coursePrice,
-          paymentAmount: paymentAmount,
-        }),
-      });
+      // Add timeout to waitlist submission (30 seconds)
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
+
+      try {
+        const waitlistResponse = await fetch("/api/waitlist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            phone: fullPhoneNumber, // Send complete phone number with country code
+            totalAmount: coursePrice,
+            paymentAmount: paymentAmount,
+          }),
+          signal: controller.signal,
+        });
+
+        clearTimeout(timeout);
 
       console.log("Waitlist response status:", waitlistResponse.status);
       console.log(
@@ -173,6 +181,13 @@ const WaitlistForm = () => {
         error instanceof Error ? error.stack : "No stack",
       );
 
+      // Check if it's a timeout error
+      if (error instanceof Error && error.name === "AbortError") {
+        toast.error("Request timed out. Please check your connection and try again.");
+        setIsLoading(false);
+        return;
+      }
+
       const errorMessage =
         error instanceof Error ? error.message : "An unexpected error occurred";
       console.error("Displaying error to user:", errorMessage);
@@ -207,23 +222,31 @@ const WaitlistForm = () => {
       // Combine country code with phone number for payment
       const fullPhoneNumber = `${data.countryCode}${data.phone}`;
 
-      const paymentResponse = await fetch("/api/payment/initialize", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: fullPhoneNumber, // Send complete phone number with country code
-          course: data.course,
-          amount: paymentAmount,
-          totalAmount: coursePrice,
-          paymentOption: data.paymentOption,
-        }),
-      });
+      // Add timeout to payment initialization (30 seconds)
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
 
-      const paymentData = await paymentResponse.json();
+      try {
+        const paymentResponse = await fetch("/api/payment/initialize", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            phone: fullPhoneNumber, // Send complete phone number with country code
+            course: data.course,
+            amount: paymentAmount,
+            totalAmount: coursePrice,
+            paymentOption: data.paymentOption,
+          }),
+          signal: controller.signal,
+        });
+
+        clearTimeout(timeout);
+
+        const paymentData = await paymentResponse.json();
       console.log("Payment response:", paymentData);
 
       if (!paymentResponse.ok) {
@@ -241,6 +264,15 @@ const WaitlistForm = () => {
         console.error("No payment link in response:", paymentData);
         throw new Error("No payment link received");
       }
+    } catch (paymentError) {
+      // Check if it's a timeout error
+      if (paymentError instanceof Error && paymentError.name === "AbortError") {
+        toast.error("Payment request timed out. Please try again.");
+        setIsLoading(false);
+        return;
+      }
+      throw paymentError;
+    }
     } catch (error) {
       console.error("Payment initialization error:", error);
       const errorMessage =
