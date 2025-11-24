@@ -204,13 +204,19 @@ const WaitlistForm = () => {
     try {
       const { formData: data, paymentAmount, coursePrice } = pendingPaymentData;
 
+      // Combine country code with phone number for payment
+      const fullPhoneNumber = `${data.countryCode}${data.phone}`;
+
       const paymentResponse = await fetch("/api/payment/initialize", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...data,
+          name: data.name,
+          email: data.email,
+          phone: fullPhoneNumber, // Send complete phone number with country code
+          course: data.course,
           amount: paymentAmount,
           totalAmount: coursePrice,
           paymentOption: data.paymentOption,

@@ -48,15 +48,37 @@ export async function POST(request: Request) {
       const database = client.db("aaronice_db");
       const collection = database.collection("users");
 
-      console.log("Checking for existing user:", email);
-      const existingUser = await collection.findOne({ email });
+      console.log("Checking for existing registration:", { email, course });
+      // Check if user already registered for THIS specific course
+      const existingRegistration = await collection.findOne({
+        email,
+        course,
+      });
 
-      if (existingUser) {
-        console.log("User already exists:", email);
-        return { exists: true };
+      if (existingRegistration) {
+        console.log(
+          "User already registered for this course, updating record:",
+          { email, course },
+        );
+        // Update existing registration for this course
+        await collection.updateOne(
+          { email, course },
+          {
+            $set: {
+              name,
+              phone,
+              paymentOption: paymentOption || "full",
+              totalAmount: totalAmount || 0,
+              balanceAmount: totalAmount || 0,
+              updatedAt: new Date(),
+            },
+          },
+        );
+        console.log("Registration updated successfully");
+        return { exists: true, updated: true, id: existingRegistration._id };
       }
 
-      console.log("Inserting new user...");
+      console.log("Inserting new registration...");
       const result = await collection.insertOne({
         name,
         email,
@@ -71,19 +93,23 @@ export async function POST(request: Request) {
         isFullyPaid: false,
       });
 
-      console.log("User inserted successfully:", result.insertedId);
+      console.log("Registration inserted successfully:", result.insertedId);
       return { exists: false, id: result.insertedId };
     })();
 
     const dbResult = (await Promise.race([dbPromise, timeoutPromise])) as {
       exists: boolean;
+      updated?: boolean;
       id?: any;
     };
 
-    if (dbResult.exists) {
+    if (dbResult.exists && dbResult.updated) {
       return NextResponse.json(
-        { message: "Email already registered" },
-        { status: 400 },
+        {
+          message: "Your registration has been updated successfully",
+          id: dbResult.id,
+        },
+        { status: 200 },
       );
     }
 
