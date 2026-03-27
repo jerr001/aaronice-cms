@@ -27,6 +27,12 @@ const menuData: Menu[] = [
     path: "/#courses",
   },
   {
+    id: 3.5,
+    title: "Blog",
+    newTab: false,
+    path: "/blog",
+  },
+  {
     id: 4,
     title: "Contact",
     newTab: false,
@@ -37,6 +43,12 @@ const menuData: Menu[] = [
     title: "Join Waitlist",
     newTab: false,
     path: "/waitlist",
+  },
+  {
+    id: 6,
+    title: "Admin",
+    newTab: false,
+    path: "/admin/login",
   },
 ];
 
