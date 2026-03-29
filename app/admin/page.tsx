@@ -10,9 +10,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 
-// Force dynamic rendering
-export const dynamic = "force-dynamic";
-
 interface DashboardStats {
   totalPosts: number;
   publishedPosts: number;

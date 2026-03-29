@@ -12,9 +12,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 
-// Force dynamic rendering
-export const dynamic = "force-dynamic";
-
 export default function AdminLoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
