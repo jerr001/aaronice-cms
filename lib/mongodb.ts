@@ -1,10 +1,15 @@
 import { MongoClient, MongoClientOptions } from "mongodb";
 
-if (!process.env.MONGODB_URI) {
+const uri = process.env.MONGODB_URI;
+
+if (
+  !uri &&
+  process.env.NODE_ENV === "production" &&
+  process.env.VERCEL !== "1"
+) {
   throw new Error("Please add your MongoDB URI to .env.local");
 }
 
-const uri = process.env.MONGODB_URI;
 const options: MongoClientOptions = {
   maxPoolSize: 10,
   minPoolSize: 2, // Keep minimum connections alive
@@ -18,7 +23,10 @@ const options: MongoClientOptions = {
 let client;
 let clientPromise: Promise<MongoClient>;
 
-if (process.env.NODE_ENV === "development") {
+if (!uri) {
+  // Return a dummy promise if MongoDB URI is not available (e.g., during build)
+  clientPromise = Promise.reject(new Error("MongoDB URI not configured"));
+} else if (process.env.NODE_ENV === "development") {
   let globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>;
   };
