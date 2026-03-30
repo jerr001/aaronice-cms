@@ -13,24 +13,25 @@ import {
   validationErrorResponse,
   successResponse,
 } from "@/lib/utils/response";
-import { hashPassword, comparePassword } from "@/lib/auth/crypto";
 
-// Hardcoded admin user for fallback authentication
-const ADMIN_USERS = [
+// Hardcoded admin users for fallback authentication (without MongoDB)
+const ADMIN_USERS: Array<{
+  _id: string;
+  email: string;
+  password: string;
+  name: string;
+  role: string;
+  isActive: boolean;
+}> = [
   {
     _id: "admin-001",
     email: "admin@aaronice.com",
-    password: undefined as string | undefined, // Will be set during build
+    password: "ChangeMe123!", // Plain password for fallback (should change in production)
     name: "Admin",
     role: "admin",
     isActive: true,
   },
 ];
-
-// Default password hash for "ChangeMe123!" (pre-computed)
-// This ensures consistent hashing across builds
-const DEFAULT_PASSWORD_HASH =
-  "$2b$10$vH2nC0KhYpEp3KVPQvW7aO.4R9T1zJ5.5xK8L2m3N4p5Q6r7S8t9U";
 
 export async function POST(request: NextRequest) {
   try {
@@ -60,11 +61,8 @@ export async function POST(request: NextRequest) {
       return errorResponse("User account is inactive", 401, "USER_INACTIVE");
     }
 
-    // Compare password
-    const passwordHash = user.password || DEFAULT_PASSWORD_HASH;
-    const isPasswordValid = await comparePassword(password, passwordHash);
-
-    if (!isPasswordValid) {
+    // Simple string comparison for fallback auth
+    if (password !== user.password) {
       return errorResponse(
         "Invalid email or password",
         401,
