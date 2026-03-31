@@ -6,13 +6,6 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { LoginValidator } from "@/lib/validators/blog";
-import { signJWT } from "@/lib/auth/jwt";
-import {
-  errorResponse,
-  validationErrorResponse,
-  successResponse,
-} from "@/lib/utils/response";
 
 // Hardcoded admin users for fallback authentication (without MongoDB)
 const ADMIN_USERS: Array<{
@@ -33,61 +26,115 @@ const ADMIN_USERS: Array<{
   },
 ];
 
+// Simple JWT signing without external dependencies
+function signSimpleJWT(payload: Record<string, any>): string {
+  const header = {
+    alg: "HS256",
+    typ: "JWT",
+  };
+
+  const now = Math.floor(Date.now() / 1000);
+  const tokenPayload = {
+    ...payload,
+    iat: now,
+    exp: now + 7 * 24 * 60 * 60, // 7 days
+  };
+
+  const headerEncoded = Buffer.from(JSON.stringify(header))
+    .toString("base64")
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+
+  const payloadEncoded = Buffer.from(JSON.stringify(tokenPayload))
+    .toString("base64")
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+
+  const signature = require("crypto")
+    .createHmac("sha256", process.env.ADMIN_JWT_SECRET || "secret-key")
+    .update(`${headerEncoded}.${payloadEncoded}`)
+    .digest("base64")
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+
+  return `${headerEncoded}.${payloadEncoded}.${signature}`;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const { email, password } = body;
 
     // Validate input
-    const validation = LoginValidator.safeParse(body);
-    if (!validation.success) {
-      return validationErrorResponse(validation.error);
+    if (!email || !password) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Email and password are required",
+        },
+        { status: 400 }
+      );
     }
-
-    const { email, password } = validation.data;
 
     // Find user in hardcoded list
     const user = ADMIN_USERS.find((u) => u.email === email);
 
     if (!user) {
-      return errorResponse(
-        "Invalid email or password",
-        401,
-        "INVALID_CREDENTIALS",
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Invalid email or password",
+        },
+        { status: 401 }
       );
     }
 
     // Check if user is active
     if (!user.isActive) {
-      return errorResponse("User account is inactive", 401, "USER_INACTIVE");
+      return NextResponse.json(
+        {
+          success: false,
+          error: "User account is inactive",
+        },
+        { status: 401 }
+      );
     }
 
     // Simple string comparison for fallback auth
     if (password !== user.password) {
-      return errorResponse(
-        "Invalid email or password",
-        401,
-        "INVALID_CREDENTIALS",
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Invalid email or password",
+        },
+        { status: 401 }
       );
     }
 
     // Generate JWT token
-    const token = signJWT({
+    const token = signSimpleJWT({
       sub: user._id,
       email: user.email,
       role: user.role,
     });
 
     // Create response with token in httpOnly cookie + body
-    const response = successResponse(
+    const response = NextResponse.json(
       {
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        token,
+        success: true,
+        data: {
+          id: user._id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+          token,
+        },
+        message: "Login successful",
       },
-      "Login successful",
-      200,
+      { status: 200 }
     );
 
     // Set httpOnly cookie for security
@@ -101,9 +148,12 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (error) {
     console.error("[Login Error]", error);
-    return errorResponse(
-      error instanceof Error ? error.message : "Login failed",
-      500,
+    return NextResponse.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Login failed",
+      },
+      { status: 500 }
     );
   }
 }
