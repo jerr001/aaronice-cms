@@ -6,6 +6,7 @@
 
 "use client";
 
+import "../globals.css";
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
@@ -14,9 +15,6 @@ import { toast, Toaster } from "react-hot-toast";
 interface AdminLayoutProps {
   children: ReactNode;
 }
-
-// Force dynamic rendering for admin pages
-export const dynamic = "force-dynamic";
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
