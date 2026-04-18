@@ -42,31 +42,49 @@
 
 @layer utilities {
   .testimonial-01 .swiper-pagination-bullet {
-    @apply rounded-full bg-gray-300 opacity-100;
+    border-radius: 9999px;
+    background-color: #d1d5db;
+    opacity: 1;
     height: 12px;
     width: 12px;
   }
   .testimonial-01 .swiper-pagination-bullet-active {
-    @apply rounded-full bg-orange-400;
+    border-radius: 9999px;
+    background-color: #f97316;
     width: 24px;
   }
 
   .testimonial-01 .swiper-pagination {
-    @apply relative;
+    position: relative;
     padding-top: 50px;
   }
 
   #supportCheckbox:checked ~ div span {
-    @apply opacity-100;
+    opacity: 1;
   }
 }
 
 @layer base {
   body {
-    @apply relative z-1 font-sans text-base font-normal text-gray-700 dark:text-gray-300;
+    position: relative;
+    z-index: 1;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #374151;
+  }
+  
+  body.dark {
+    color: #d1d5db;
   }
 }
 
 .active-tab {
-  @apply bg-gray-200 text-black dark:bg-gray-700 dark:text-white;
+  background-color: #e5e7eb;
+  color: black;
+}
+
+.dark .active-tab {
+  background-color: #374151;
+  color: white;
 }
