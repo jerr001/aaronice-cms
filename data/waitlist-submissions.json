@@ -1,0 +1,13 @@
+{
+  "xamz08br2": {
+    "_id": "xamz08br2",
+    "name": "Jeremiah Obembe",
+    "email": "jeremiahobembe7@gmail.com",
+    "phone": "+2348143529665",
+    "course": "data-analysis",
+    "paymentOption": "full",
+    "totalAmount": 120000,
+    "paymentAmount": 120000,
+    "createdAt": "2026-03-14T07:33:20.748Z"
+  }
+}

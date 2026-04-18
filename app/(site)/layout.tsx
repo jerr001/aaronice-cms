@@ -12,7 +12,9 @@ const inter = Inter({ subsets: ["latin"] });
 import ToasterContext from "../context/ToastContext";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aaronice.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://aaronice.com",
+  ),
   title: {
     default: "Aaronice Prime Global Company Ltd | AI & Tech Solutions Training",
     template: "%s | Aaronice Prime",

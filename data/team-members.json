@@ -1,0 +1,62 @@
+[
+  {
+    "id": "team-1",
+    "name": "Aina John",
+    "title": "Chief Executive Officer",
+    "bio": "Visionary leader driving innovation and strategic growth at Aaronice Prime Global Company Ltd",
+    "image": "/images/team/aina-john.jpg",
+    "email": "aina@aaronice.com",
+    "phone": "+234 801 234 5678",
+    "twitter": "https://twitter.com/ainajohn",
+    "linkedin": "https://linkedin.com/in/ainajohn",
+    "createdAt": "2026-03-14T14:26:42.665Z"
+  },
+  {
+    "id": "team-2",
+    "name": "Kushimo Oyindamola",
+    "title": "Project Manager",
+    "bio": "Expert project manager ensuring timely delivery and excellence in all our initiatives",
+    "image": "/images/team/kushimo-oyindamola.jpg",
+    "email": "kushimo@aaronice.com",
+    "phone": "+234 801 234 5679",
+    "twitter": "https://twitter.com/kushimo",
+    "linkedin": "https://linkedin.com/in/kushimooyin",
+    "createdAt": "2026-03-14T14:26:42.666Z"
+  },
+  {
+    "id": "team-3",
+    "name": "Temitope Victor",
+    "title": "Head of Operations",
+    "bio": "Operations leader optimizing processes and ensuring seamless business execution",
+    "image": "/images/team/temitope-victor.jpg",
+    "email": "temitope@aaronice.com",
+    "phone": "+234 801 234 5680",
+    "twitter": "https://twitter.com/temitope",
+    "linkedin": "https://linkedin.com/in/temitope",
+    "createdAt": "2026-03-14T14:26:42.666Z"
+  },
+  {
+    "id": "team-4",
+    "name": "Jeremiah Obembe",
+    "title": "Fullstack Developer",
+    "bio": "Passionate fullstack developer building robust and scalable solutions",
+    "image": "/images/team/jeremiah-obembe.jpg",
+    "email": "jeremiah@aaronice.com",
+    "phone": "+234 801 234 5681",
+    "twitter": "https://twitter.com/jeremiah",
+    "linkedin": "https://linkedin.com/in/jeremiah",
+    "createdAt": "2026-03-14T14:26:42.667Z"
+  },
+  {
+    "id": "team-5",
+    "name": "Ibrahim Favour",
+    "title": "Customer Service",
+    "bio": "Dedicated customer service professional committed to delivering exceptional support",
+    "image": "/images/team/ibrahim-favour.jpg",
+    "email": "ibrahim@aaronice.com",
+    "phone": "+234 801 234 5682",
+    "twitter": "https://twitter.com/ibrahim",
+    "linkedin": "https://linkedin.com/in/ibrahim",
+    "createdAt": "2026-03-14T14:26:42.668Z"
+  }
+]

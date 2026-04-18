@@ -1,0 +1,49 @@
+[
+  {
+    "pageId": "home",
+    "heroTitle": "This is Aaronice Prime",
+    "heroSubtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting",
+    "updatedAt": "2026-03-14T08:31:14.365Z"
+  },
+  {
+    "pageId": "about",
+    "aboutIntro": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Lorem Ipsum\"},{\"type\":\"text\",\"text\":\" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"}]}]}",
+    "visionStatement": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Lorem Ipsum\"},{\"type\":\"text\",\"text\":\" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"}]}]}",
+    "missionStatement": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Lorem Ipsum\"},{\"type\":\"text\",\"text\":\" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"}]}]}",
+    "updatedAt": "2026-03-14T13:54:12.954Z"
+  },
+  {
+    "pageId": "footer",
+    "footerText": "Aaronice Prime Global Company Ltd was established with a clear vision to provide intelligent technology solutions to real-world challenges and cultivate the next generation of tech professionals.",
+    "email": "support@aaronice.com",
+    "phone": "+234 (0) 123 4567890",
+    "address": "Lagos, Nigeria",
+    "updatedAt": "2026-03-14T13:08:07.829Z"
+  },
+  {
+    "pageId": "contact",
+    "heading": "Contact Us",
+    "text": "Get in touch with us for any inquiries or collaborations",
+    "email": "support@aaronice.com",
+    "phone": "+234 (0) 123 4567890",
+    "address": "Lagos, Nigeria",
+    "updatedAt": "2026-03-14T14:00:02.212Z",
+    "contactHeading": "What is Lorem Ipsum?",
+    "contactDescription": "Where does it come from?",
+    "contactEmail": "jeremiahobembe7@gmail.com",
+    "contactPhone": "+2348139933708",
+    "contactAddress": "40, Ajoke street, Iwaya, Yaba, Lagos"
+  },
+  {
+    "pageId": "pricing",
+    "heading": "Our Pricing",
+    "text": "Flexible and affordable pricing plans for everyone",
+    "updatedAt": "2026-03-14T13:08:07.829Z"
+  },
+  {
+    "pageId": "services",
+    "heading": "Our Services",
+    "text": "Comprehensive technology solutions and training programs",
+    "updatedAt": "2026-03-14T13:08:07.829Z"
+  }
+]

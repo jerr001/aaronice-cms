@@ -163,7 +163,7 @@ const Footer = () => {
             <ul className="flex items-center gap-5">
               <li>
                 <a
-                  href="https://www.facebook.com/share/16oNweMP8F/?mibextid=wwXIfr"
+                  href="https://www.facebook.com/share/1E5kdXD4gB/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -256,6 +256,27 @@ const Footer = () => {
                         <rect width="24" height="24" fill="white" />
                       </clipPath>
                     </defs>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tiktok.com/@edupath.solutions?_r=1&_t=ZS-94YXZSBLkET"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                >
+                  <svg
+                    className="fill-[#D1D8E0] transition-all duration-300 hover:fill-orange-400"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.9 2.9 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.95-.1z"
+                      fill=""
+                    />
                   </svg>
                 </a>
               </li>
